@@ -137,7 +137,7 @@ Resource and configuration files.
 
 ---
 
-## 🧱 Key Concepts
+##  Key Concepts
 
 - Uses **Spring Boot** for fast REST API setup
 - All entities are connected via **JPA annotations**
@@ -146,7 +146,7 @@ Resource and configuration files.
 
 ---
 
-## ⚙️ Developer Setup
+##  Developer Setup
 
 1. **Install Java 17+**
 2. **Install Maven**
