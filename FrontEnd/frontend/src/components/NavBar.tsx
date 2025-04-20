@@ -4,7 +4,6 @@ export default function Navbar() {
     return (
         <nav>
             <div>
-                <h1> Movie Rental System</h1>
                 <ul >
                     <li>
                         <Link to="/Home">Home</Link>
