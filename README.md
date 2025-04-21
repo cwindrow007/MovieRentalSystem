@@ -70,7 +70,7 @@ Route declarations and protected routes.
 
 ##  Config Files
 
-- **`tailwind.config.ts`** – TailwindCSS configuration.
+- **`tailwind.config.js`** – TailwindCSS configuration.
 - **`tsconfig.json`** – TypeScript compiler settings.
 - **`vite.config.ts`** – Vite development/build settings.
 - **`package.json`** – Project dependencies and scripts.
