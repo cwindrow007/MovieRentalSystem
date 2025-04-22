@@ -19,7 +19,7 @@ public class AuthServices {
     private final JwtUtil jwtUtil;
 
     public User register(String name, String email, String password) {
-        if (userRepository.existByEmail(email)) {
+        if (userRepository.existsByEmail(email)) {
             throw new RuntimeException("Email already exists");
         }
         User user = User.builder()
@@ -27,15 +27,18 @@ public class AuthServices {
                 .email(email)
                 .password(passwordEncoder.encode(password))
                 .role("User")
+                .username(email.split("@")[0])
                 .build();
-        return userRepository.save(newUser);
+        return userRepository.save(user);
     }
+
 
     public String login(String email, String rawPassword) {
         Optional<User> user = userRepository.findByEmail(email);
-        if(userOpt.isEmpty() || !passwordEncoder.matches(rawPassword, userOpt.getPassword())){
+        if (user.isEmpty() || !passwordEncoder.matches(rawPassword, user.get().getPassword())) {
             throw new RuntimeException("Invalid Email or Password");
         }
-        return jwtUtil.generateToken(userOpt.get())
+
+        return jwtUtil.generateToken(user.get());
     }
 }
