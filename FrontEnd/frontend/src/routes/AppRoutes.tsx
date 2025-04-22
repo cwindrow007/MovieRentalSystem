@@ -6,6 +6,7 @@ import Register from "../pages/Register.tsx";
 import UserDashboardPage from "../pages/UserDashboardPage.tsx";
 import UserRentals from "../pages/UserRentals.tsx";
 import MovieDetails from "../pages/MovieDetails.tsx";
+import ForgotPassword from "../pages/ForgotPassword.tsx";
 
 
 
@@ -16,10 +17,11 @@ const AppRoutes = () => {
                 <Routes>
                     <Route path = "/" element = {<Login/>} />
                     <Route path = "/home" element = {<Home/>}/>
-                    <Route path = "/moviedetails" element = {<MovieDetails/>}/>
+                    <Route path = "/movie-details" element = {<MovieDetails/>}/>
                     <Route path = "/register" element = {<Register/>}/>
-                    <Route path = "/userdashBoard" element = {<UserRentals/>}/>
-                    <Route path = "/userrentals" element = {<UserDashboardPage/>}/>
+                    <Route path = "/user-dashBoard" element = {<UserRentals/>}/>
+                    <Route path = "/user-rentals" element = {<UserDashboardPage/>}/>
+                    <Route path = '/forgot-password' element={<ForgotPassword/>}/>
                 </Routes>
             </main>
         </>

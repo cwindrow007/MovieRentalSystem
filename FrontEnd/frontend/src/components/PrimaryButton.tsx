@@ -5,9 +5,10 @@ type PrimaryButtonProps = {
     type?: 'button' | 'submit'
     onClick?: () => void
     disabled?: boolean
+    className?: string
     children: React.ReactNode
 }
-const PrimaryButton = ({type = 'button', onClick, disabled, children}: PrimaryButtonProps) =>{
+const PrimaryButton = ({type = 'button', onClick, disabled, className='', children}: PrimaryButtonProps) =>{
 
     return(
         <button
@@ -19,7 +20,7 @@ const PrimaryButton = ({type = 'button', onClick, disabled, children}: PrimaryBu
         bg-gray-800 text-white border-gray-800
         hover:bg-white hover:text-gray-800 hover:border-gray-800 hover:border-2
         disabled:opacity-60
-        `}
+        ${className}`}
         >
             {children}
         </button>
