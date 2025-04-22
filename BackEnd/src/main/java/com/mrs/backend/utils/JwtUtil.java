@@ -9,6 +9,7 @@ import jakarta.annotation.PostConstruct;
 import org.apache.catalina.security.DeployXmlPermission;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.security.Key;
 import java.util.Date;
@@ -49,6 +50,10 @@ public class JwtUtil {
             } catch (JwtException | IllegalArgumentException e) {
                 return false;
             }
+    }
+    public boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return username.equals(userDetails.getUsername()) && validateToken(token);
     }
 
         private Claims getClaims (String token){
