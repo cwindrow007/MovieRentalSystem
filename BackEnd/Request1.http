@@ -3,7 +3,7 @@ Origin: http://localhost:3000
 Content-Type: application/json
 
 {
-  "name": "New Person12",
+  "name": "New Person1234",
   "email": "newperson12@example.com",
   "password": "password123"
 }
