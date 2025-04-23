@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 BackEnd\src\main\resources\application.properties
+MovieRentalSystem\FrontEnd\frontend\.env
