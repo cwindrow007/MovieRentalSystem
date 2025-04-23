@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const login = (newToken: string) => {
         localStorage.setItem('token', newToken);
+        console.log('Token saved to localStorage:', newToken);
         setToken(newToken);
     };
 

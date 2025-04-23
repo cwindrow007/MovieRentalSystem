@@ -1,11 +1,12 @@
-import {JSX} from 'react';
+// src/components/PrivateRoutes.tsx
+import React, { JSX } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
-const PrivateRoute = ({ children }: { children: JSX.Element }) => {
-    const token = localStorage.getItem('token');
-    return token ? children : <Navigate to="/" replace />;
+const PrivateRoutes = ({ children }: { children: JSX.Element }) => {
+    const { isAuthenticated } = useAuth();
+
+    return isAuthenticated ? children : <Navigate to="/home" replace />;
 };
 
-
-
-export default PrivateRoute;
+export default PrivateRoutes;

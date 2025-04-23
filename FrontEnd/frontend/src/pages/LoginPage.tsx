@@ -32,6 +32,7 @@ const LoginPage = () => {
 
             setAuthToken(response.token); //  use AuthContext instead of localStorage
             navigate('/home'); //  redirect to protected route
+
         } catch (err: any) {
             if (err.message === 'Login failed.') {
                 setError('Invalid credentials.');
@@ -41,7 +42,8 @@ const LoginPage = () => {
         } finally {
             setLoading(false);
         }
-        console.log("JWT in storage:", localStorage.getItem('token'));
+        console.log('Now navigating to /home...');
+        navigate('/home');
     };
 
     return (
