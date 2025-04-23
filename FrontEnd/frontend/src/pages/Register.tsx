@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthServices from '../services/AuthServices'
 
 export default function Register(){
     const navigate = useNavigate();
@@ -37,12 +38,20 @@ export default function Register(){
         return newErrors;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const validationErrors = validate();
         if (Object.keys(validationErrors).length === 0) {
-            console.log("Form Data:", formData);
-            // TODO: Send data to backend API
+            try {
+                await AuthServices.register({
+                    name: formData.fullName,
+                    email: formData.email,
+                    password: formData.password,
+                });
+                navigate('/'); // Redirect to login on success
+            } catch (err: any) {
+                setErrors({ email: err.message || 'Registration failed.' });
+            }
         } else {
             setErrors(validationErrors);
         }
