@@ -18,6 +18,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody RegisterRequest request) {
+        System.out.println("HIT /auth/register with " + request);
+
         User newUser = authService.register(request.getName(), request.getEmail(), request.getPassword());
         return ResponseEntity.ok(newUser);
     }
@@ -27,5 +29,5 @@ public class AuthController {
         String token = authService.login(request.getEmail(), request.getPassword());
         return ResponseEntity.ok(new AuthResponse(token));
     }
-    
+
 }
