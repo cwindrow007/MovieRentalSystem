@@ -51,6 +51,7 @@ const MovieList = () => {
             ))}
 
             {/*Movie List*/}
+            <h2 className="text-xl font-semibold mb-4">Movie List</h2>
             {movies.map(movie => (
                 <div key={movie.id} className="flex justify-between items-center p-4 border-b">
                     <span>{movie.title}</span>
