@@ -8,6 +8,7 @@ import UserRentals from "../pages/UserRentals.tsx";
 import MovieDetails from "../pages/MovieDetails.tsx";
 import ForgotPassword from "../pages/ForgotPassword.tsx";
 import PrivateRoutes from "../components/PrivateRoutes.tsx";
+import Admin from "../pages/AdminDashboard.tsx";
 
 
 
@@ -51,6 +52,7 @@ const AppRoutes = () => {
                             </PrivateRoutes>
                         }
                     />
+                    <Route path = "/Admin" element = {<Admin/>} />
                 </Routes>
             </main>
             );
