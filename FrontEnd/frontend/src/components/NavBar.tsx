@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import ProfilePicture from "../components/profile-picture.png";
+import Cart from "../components/cart.png";
 
 export default function Navbar() {
     const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -64,12 +65,15 @@ export default function Navbar() {
                         </button>
                     )}
                 </div>
+                    <button className="flex items-center space-x-2 focus:outline-none">
+                    <img src={Cart} alt="Cart" className="w-8 h-8"/>
+                    </button>
                 <div className="relative" ref={dropdownRef}>
                     <button onClick={toggleDropdown} className="flex items-center space-x-2 focus:outline-none">
                         <img src={ProfilePicture} alt="Profile" className="w-8 h-8 rounded-full"/>
                     </button>
                     {dropdownVisible && (
-                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2">
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
                             <Link to="/" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Login</Link>
                             <Link to="/Register" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Register</Link>
                         </div>
