@@ -1,15 +1,17 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const ForgotPassword= () =>
-{
-    const [email, setEmail] = useState('')
-    const [message, setMessage] = useState('')
+const ForgotPassword = () => {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (e: React.FormEvent)=>{
-        e.preventDefault()
-        //TODO: Hook into backend
-        setMessage("If an account exist, reset instructions will be sent.")
-    }
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // TODO: Hook into backend
+        setMessage("If an account exists, reset instructions will be sent.");
+    };
+
     return (
         <div className="flex justify-center items-center h-screen bg-gray-100 px-4">
             <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
@@ -31,8 +33,16 @@ const ForgotPassword= () =>
                 </button>
 
                 {message && <p className="text-green-600 mt-4 text-sm text-center">{message}</p>}
+
+                <button
+                    onClick={() => navigate("/")}
+                    className="w-full bg-blue-600 text-white py-2 rounded mt-4 hover:bg-blue-700 transition"
+                >
+                    Back to Login
+                </button>
             </form>
         </div>
-    )
-}
-export default ForgotPassword
+    );
+};
+
+export default ForgotPassword;
