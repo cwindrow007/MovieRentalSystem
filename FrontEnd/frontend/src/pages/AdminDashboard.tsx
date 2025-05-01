@@ -25,6 +25,7 @@ const MovieList = () => {
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="p-4 max-w-4xl w-full">
 
+                <h1 className="text-3xl font-bold text-center mb-6">Admin Dashboard</h1>
 
                 {/*Overview*/}
                 <div className="mb-6 p-4 border rounded bg-gray-50">
@@ -36,8 +37,34 @@ const MovieList = () => {
                     </div>
                 </div>
 
+
+                <h2 className="text-xl font-semibold mb-4">Movie Information</h2>
+                <div className="flex space-x-4 mb-2 font-semibold">
+                    <div>Title</div>
+                    <div>Genre</div>
+                    <div>Availability</div>
+                    <div>Actions</div>
+                </div>
+                
+                {movies.map(movie => (
+                    <div key={movie.id} className="flex justify-between items-center p-4 border-b">
+                        <span>{movie.title}</span>
+                        <span>{movie.genre}</span>
+                        <span>{movie.availability}</span>
+                        <div>
+                            <button className="text-blue-500">Edit</button>
+                            <button className="text-red-500 ml-2">Delete</button>
+                        </div>
+                    </div>
+                ))}
+
+                {/*Add New Movie btn below list of movies*/}
+                <div className="mt-4">
+                    <button className="bg-green-500 text-white px-4 py-2 rounded">Add New Movie</button>
+                </div>
+
                 {/*User Info*/}
-                <h2 className="text-xl font-semibold mb-4">User Information</h2>
+                <h2 className="text-xl font-semibold mb-4">User Information & Management</h2>
                 {users.map(user => (
                     <div key={user.id} className="mb-6 p-4 border rounded bg-gray-50">
                        <div className="space-y-2">
@@ -51,23 +78,6 @@ const MovieList = () => {
                        </div>
                     </div>
                 ))}
-
-                {/*Movie List*/}
-                <h2 className="text-xl font-semibold mb-4">Movie List</h2>
-                {movies.map(movie => (
-                    <div key={movie.id} className="flex justify-between items-center p-4 border-b">
-                        <span>{movie.title}</span>
-                        <div>
-                            <button className="text-blue-500">Edit</button>
-                            <button className="text-red-500 ml-2">Delete</button>
-                        </div>
-                    </div>
-                ))}
-
-                {/*Add New Movie btn below list of movies*/}
-                <div className="mt-4">
-                    <button className="bg-green-500 text-white px-4 py-2 rounded">Add New Movie</button>
-                </div >
             </div >
         </div>
     );
