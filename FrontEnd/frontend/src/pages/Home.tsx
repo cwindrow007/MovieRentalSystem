@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const Home = () => {
@@ -65,10 +66,14 @@ const Home = () => {
                 <h2 className="text-2xl font-bold mb-4">New Releases</h2>
                 <div className="grid grid-cols-5 gap-4">
                     {movies.slice(0, 5).map((movie, index) => (
-                        <div key={index} className="bg-white p-2 rounded-lg shadow-md">
+                        <div key={index} className="relative bg-white p-2 rounded-lg shadow-md">
                             <img src={movie.cover} alt={movie.title} className="w-full h-48 object-cover rounded-lg" />
                             <h3 className="text-lg font-semibold mt-2">{movie.title}</h3>
-                            <p className="text-sm">{movie.description}</p>
+                            <p className="text-sm mb-4">{movie.description}</p>
+                            <div className="flex justify-between mt-2">
+                                <Link to={`/details/${movie.title}`} className="bg-blue-500 text-white px-4 py-2 rounded-full">Details</Link>
+                                <Link to={`/rental/${movie.title}`} className="bg-green-500 text-white px-4 py-2 rounded-full">Rent</Link>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -79,10 +84,14 @@ const Home = () => {
                 <h2 className="text-2xl font-bold mb-4">Suggested Movies</h2>
                 <div className="grid grid-cols-5 gap-4">
                     {movies.slice(5, 10).map((movie, index) => (
-                        <div key={index} className="bg-white p-2 rounded-lg shadow-md">
+                        <div key={index} className="relative bg-white p-2 rounded-lg shadow-md">
                             <img src={movie.cover} alt={movie.title} className="w-full h-48 object-cover rounded-lg" />
                             <h3 className="text-lg font-semibold mt-2">{movie.title}</h3>
-                            <p className="text-sm">{movie.description}</p>
+                            <p className="text-sm mb-4">{movie.description}</p>
+                            <div className="flex justify-between mt-2">
+                                <Link to={`/details/${movie.title}`} className="bg-blue-500 text-white px-4 py-2 rounded-full">Details</Link>
+                                <Link to={`/rental/${movie.title}`} className="bg-green-500 text-white px-4 py-2 rounded-full">Rent</Link>
+                            </div>
                         </div>
                     ))}
                 </div>
