@@ -65,9 +65,11 @@ export default function Navbar() {
                         </button>
                     )}
                 </div>
-                    <button className="flex items-center space-x-2 focus:outline-none">
-                    <img src={Cart} alt="Cart" className="w-8 h-8"/>
-                    </button>
+
+                <Link to="/cart" className="flex items-center space-x-2 focus:outline-none">
+                    <img src={Cart} alt="Cart" className="w-8 h-8" />
+                </Link>
+
                 <div className="relative" ref={dropdownRef}>
                     <button onClick={toggleDropdown} className="flex items-center space-x-2 focus:outline-none">
                         <img src={ProfilePicture} alt="Profile" className="w-8 h-8 rounded-full"/>
