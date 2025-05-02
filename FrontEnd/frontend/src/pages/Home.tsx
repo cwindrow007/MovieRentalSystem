@@ -1,28 +1,32 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import banner from "../components/mountain.jpg";
+import moviesData from '../movies.json';
+
+// Optional: Define a TypeScript interface for movie objects
+interface Movie {
+    id: number;
+    title: string;
+    description: string;
+    genre: string;
+    image: string;
+}
 
 const Home = () => {
-    const [featuredMovies] = useState([
-        { title: 'Featured Movie 1', description: 'Description 1', cover: 'featured1.jpg' },
-        { title: 'Featured Movie 2', description: 'Description 2', cover: 'featured2.jpg' },
-        { title: 'Featured Movie 3', description: 'Description 3', cover: 'featured3.jpg' },
-        { title: 'Featured Movie 4', description: 'Description 4', cover: 'featured4.jpg' },
-    ]);
-
-    const [movies] = useState([
-        { title: 'Movie 1', description: 'Description 1', cover: 'cover1.jpg' },
-        { title: 'Movie 2', description: 'Description 2', cover: 'cover2.jpg' },
-        { title: 'Movie 3', description: 'Description 3', cover: 'cover3.jpg' },
-        { title: 'Movie 4', description: 'Description 4', cover: 'cover4.jpg' },
-        { title: 'Movie 5', description: 'Description 5', cover: 'cover5.jpg' },
-        { title: 'Movie 6', description: 'Description 6', cover: 'cover6.jpg' },
-        { title: 'Movie 7', description: 'Description 7', cover: 'cover7.jpg' },
-        { title: 'Movie 8', description: 'Description 8', cover: 'cover8.jpg' },
-        { title: 'Movie 9', description: 'Description 9', cover: 'cover9.jpg' },
-        { title: 'Movie 10', description: 'Description 10', cover: 'cover10.jpg' },
-    ]);
-
+    const [movies, setMovies] = useState<Movie[]>([]);
     const [currentMovieIndex, setCurrentMovieIndex] = useState(0);
+
+    useEffect(() => {
+        setMovies(moviesData);
+    }, []);
+
+    //First movies are manually selected in code for now
+    const featuredMovies = movies.slice(12, 17).map((movie, index) => ({
+        title: movie.title,
+        description: movie.description || 'No description available.',
+        cover: movie.image || banner,
+        tintColor: ['bg-pink-500', 'bg-green-500', 'bg-purple-500', 'bg-blue-500'][index % 4],
+    }));
 
     const nextMovie = () => {
         setCurrentMovieIndex((prevIndex) => (prevIndex + 1) % featuredMovies.length);
@@ -36,11 +40,16 @@ const Home = () => {
         setCurrentMovieIndex(index);
     };
 
+    if (featuredMovies.length === 0) {
+        return <div className="text-white p-4">Loading featured movies...</div>;
+    }
+
     return (
-        <div className="bg-gray-100">
+        <div className="bg-gray-700">
             {/* Banner Section */}
             <div className="relative h-64 bg-cover bg-center z-2" style={{ backgroundImage: `url(${featuredMovies[currentMovieIndex].cover})` }}>
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-4">
+                <div className={`absolute inset-0 ${featuredMovies[currentMovieIndex].tintColor} opacity-30 mix-blend-multiply`} />
+                <div className="absolute inset-0 bg-white-100 bg-opacity-5 flex flex-col items-center justify-center text-white p-4">
                     <h1 className="text-4xl font-bold">{featuredMovies[currentMovieIndex].title}</h1>
                     <p className="text-lg">{featuredMovies[currentMovieIndex].description}</p>
                 </div>
@@ -63,16 +72,15 @@ const Home = () => {
 
             {/* New Releases Section */}
             <div className="p-4">
-                <h2 className="text-2xl font-bold mb-4">New Releases</h2>
-                <div className="grid grid-cols-5 gap-4">
-                    {movies.slice(0, 5).map((movie, index) => (
-                        <div key={index} className="relative bg-white p-2 rounded-lg shadow-md">
-                            <img src={movie.cover} alt={movie.title} className="w-full h-48 object-cover rounded-lg" />
-                            <h3 className="text-lg font-semibold mt-2">{movie.title}</h3>
-                            <p className="text-sm mb-4">{movie.description}</p>
-                            <div className="flex justify-between mt-2">
-                                <Link to={`/details/${movie.title}`} className="bg-blue-500 text-white px-4 py-2 rounded-full">Details</Link>
-                                <Link to={`/rental/${movie.title}`} className="bg-green-500 text-white px-4 py-2 rounded-full">Rent</Link>
+                <h2 className="text-2xl font-bold mb-4 text-white underline">New Releases</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-11 pl-5 pr-5">
+                    {movies.slice(0, 6).map((movie) => (
+                        <div key={movie.id} className="flex flex-col justify-between h-full bg-gray-800 p-2 rounded-md drop-shadow-lg shadow-lg transform transition-transform hover:scale-105">
+                            <div className="w-full h-64 bg-center bg-cover bg-no-repeat rounded-md" style={{ backgroundImage: `url(${movie.image})` }} />
+                            <h3 className="text-white text-lg font-semibold mt-2 text-left leading-tight">{movie.title}</h3>
+                            <div className="flex justify-between mt-4">
+                                <Link to={`/details/${movie.title}`} className="bg-blue-500 text-white px-4 py-1 rounded-md text-sm transform transition-transform hover:scale-105">Details</Link>
+                                <Link to={`/rental/${movie.title}`} className="bg-green-500 text-white px-4 py-1 rounded-md text-sm transform transition-transform hover:scale-105">Rent</Link>
                             </div>
                         </div>
                     ))}
@@ -81,16 +89,15 @@ const Home = () => {
 
             {/* Suggested Movies Section */}
             <div className="p-4">
-                <h2 className="text-2xl font-bold mb-4">Suggested Movies</h2>
-                <div className="grid grid-cols-5 gap-4">
-                    {movies.slice(5, 10).map((movie, index) => (
-                        <div key={index} className="relative bg-white p-2 rounded-lg shadow-md">
-                            <img src={movie.cover} alt={movie.title} className="w-full h-48 object-cover rounded-lg" />
-                            <h3 className="text-lg font-semibold mt-2">{movie.title}</h3>
-                            <p className="text-sm mb-4">{movie.description}</p>
-                            <div className="flex justify-between mt-2">
-                                <Link to={`/details/${movie.title}`} className="bg-blue-500 text-white px-4 py-2 rounded-full">Details</Link>
-                                <Link to={`/rental/${movie.title}`} className="bg-green-500 text-white px-4 py-2 rounded-full">Rent</Link>
+                <h2 className="text-2xl font-bold mb-4 text-white underline">Suggested Movies</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-11 pl-5 pr-5">
+                    {movies.slice(6, 12).map((movie) => (
+                        <div key={movie.id} className="flex flex-col justify-between h-full bg-gray-800 p-2 rounded-md drop-shadow-lg shadow-lg transform transition-transform hover:scale-105">
+                            <div className="w-full h-64 bg-center bg-cover bg-no-repeat rounded-md" style={{ backgroundImage: `url(${movie.image})` }} />
+                            <h3 className="text-white text-lg font-semibold mt-2 text-left leading-tight">{movie.title}</h3>
+                            <div className="flex justify-between mt-4">
+                                <Link to={`/details/${movie.title}`} className="bg-blue-500 text-white px-4 py-1 rounded-md text-sm transform transition-transform hover:scale-105">Details</Link>
+                                <Link to={`/rental/${movie.title}`} className="bg-green-500 text-white px-4 py-1 rounded-md text-sm transform transition-transform hover:scale-105">Rent</Link>
                             </div>
                         </div>
                     ))}
