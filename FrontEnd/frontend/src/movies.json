@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "title": "Inception",
+    "description": "A thief who steals corporate secrets through dreams.",
+    "genre": "Sci-Fi",
+    "image": "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg",
+    "rented": false,
+    "available": true,
+    "price": 6.99
+  },
+  {
+    "id": 2,
+    "title": "The Godfather",
+    "description": "The aging patriarch of an organized crime dynasty transfers control to his reluctant son.",
+    "genre": "Crime",
+    "image": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+    "rented": false,
+    "available": true,
+    "price": 5.99
+  },
+  {
+    "id": 3,
+    "title": "Interstellar",
+    "description": "A team of explorers travel through a wormhole in space.",
+    "genre": "Adventure",
+    "image": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+    "rented": false,
+    "available": true,
+    "price": 9.99
+  },
+  {
+    "id": 4,
+    "title": "The Dark Knight",
+    "description": "Batman faces the Joker, a criminal mastermind who plunges Gotham into chaos.",
+    "genre": "Action",
+    "image": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "rented": false,
+    "available": true,
+    "price": 8.99
+  },
+  {
+    "id": 5,
+    "title": "GoodFellas",
+    "description": "The true story of Henry Hill, a half-Irish, half-Sicilian kid who is adopted by neighborhood gangsters and climbs the ranks of a Mafia family under the guidance of Jimmy Conway.",
+    "genre": "Crime",
+    "image": "https://image.tmdb.org/t/p/w500/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg",
+    "rented": false,
+    "available": true,
+    "price": 10.99
+  },
+  {
+    "id": 6,
+    "title": "The Matrix",
+    "description": "A hacker discovers the reality he lives in is a simulation.",
+    "genre": "Sci-Fi",
+    "image": "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+    "rented": false,
+    "available": true,
+    "price": 5.99
+  },
+  {
+    "id": 7,
+    "title": "Forrest Gump",
+    "description": "The story of a man with a low IQ who influences major historical events.",
+    "genre": "Drama",
+    "image": "https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg",
+    "rented": false,
+    "available": true,
+    "price": 9.99
+  },
+  {
+    "id": 8,
+    "title": "Fight Club",
+    "description": "An insomniac office worker forms an underground fight club.",
+    "genre": "Drama",
+    "image": "https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg",
+    "rented": false,
+    "available": true,
+    "price": 4.99
+  },
+  {
+    "id": 9,
+    "title": "The Shawshank Redemption",
+    "description": "Two imprisoned men bond over years, finding solace and redemption.",
+    "genre": "Drama",
+    "image": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
+    "rented": true,
+    "available": false,
+    "price": 11.99
+  },
+  {
+    "id": 10,
+    "title": "Gladiator",
+    "description": "A former Roman General seeks revenge against the corrupt emperor.",
+    "genre": "Action",
+    "image": "https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg",
+    "rented": true,
+    "available": false,
+    "price": 10.99
+  },
+  {
+    "id": 11,
+    "title": "Schindler's List",
+    "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce.",
+    "genre": "Drama",
+    "image": "https://image.tmdb.org/t/p/w500/t7xhP8SQTVanzecvn1oQRVWCXTI.jpg",
+    "rented": true,
+    "available": false,
+    "price": 9.99
+  },
+  {
+    "id": 12,
+    "title": "Parasite",
+    "description": "A poor family schemes to become employed by a wealthy household.",
+    "genre": "Thriller",
+    "image": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+    "rented": true,
+    "available": false,
+    "price": 7.99
+  },
+  {
+    "id": 13,
+    "title": "Movie Rental System",
+    "description": "Featured Movies",
+    "genre": "Romance",
+    "image": "https://cdn.discordapp.com/attachments/1341792461944520786/1367675588977889310/p7ixgx6amg561.jpg?ex=68161b66&is=6814c9e6&hm=51c31d5beb004b06abfb3e97f83c208859f481cfd15b64aa790dbb0d2abeef68&",
+    "rented": false,
+    "available": true,
+    "price": 11.99
+  },
+  {
+    "id": 14,
+    "title": "Jurassic Park",
+    "description": "During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.",
+    "genre": "Adventure",
+    "image": "https://image.tmdb.org/t/p/w500/9i3plLl89DHMz7mahksDaAo7HIS.jpg",
+    "rented": true,
+    "available": false,
+    "price": 8.99
+  },
+  {
+    "id": 15,
+    "title": "Star Wars: Episode IV - A New Hope",
+    "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee, and two droids to save the galaxy from the Empire's world-destroying battle station.",
+    "genre": "Sci-Fi",
+    "image": "https://image.tmdb.org/t/p/w500/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+    "rented": true,
+    "available": false,
+    "price": 9.99
+  },
+  {
+    "id": 16,
+    "title": "The Lion King",
+    "description": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
+    "genre": "Animation",
+    "image": "https://image.tmdb.org/t/p/w500/2ltadt0HtHS8qD3xREVds3PDxkP.jpg",
+    "rented": true,
+    "available": false,
+    "price": 9.99
+  },
+  {
+    "id": 17,
+    "title": "Schindler's List",
+    "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce.",
+    "genre": "Drama",
+    "image": "https://image.tmdb.org/t/p/w500/t7xhP8SQTVanzecvn1oQRVWCXTI.jpg",
+    "rented": true,
+    "available": false,
+    "price": 8.99
+  },
+  {
+    "id": 18,
+    "title": "The Silence of the Lambs",
+    "description": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to catch another serial killer.",
+    "genre": "Thriller",
+    "image": "https://image.tmdb.org/t/p/w500/rplLJ2hPcOQmkFhTqUte0MkEaO2.jpg",
+    "rented": false,
+    "available": true,
+    "price": 7.99
+  },
+  {
+    "id": 19,
+    "title": "Schindler's List",
+    "description": "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce.",
+    "genre": "Drama",
+    "image": "https://image.tmdb.org/t/p/w500/t7xhP8SQTVanzecvn1oQRVWCXTI.jpg",
+    "rented": true,
+    "available": false,
+    "price": 7.99
+  },
+  {
+    "id": 20,
+    "title": "The Departed",
+    "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
+    "genre": "Crime",
+    "image": "https://image.tmdb.org/t/p/w500/jyAgiqVSx5fl0VBYIMB3GSGh9A9.jpg",
+    "rented": true,
+    "available": false,
+    "price": 7.99
+  }
+]
