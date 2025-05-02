@@ -19,18 +19,11 @@ const AppRoutes = () => {
                     <Route path = "/" element = {<Login/>} />
                     <Route path = "/register" element = {<Register/>}/>
                     <Route path = '/forgot-password' element={<ForgotPassword/>}/>
+                    <Route path = '/cart' element={<UserRentals/>}/>
 
                     {/*Private Routes*/}
-                    <Route
-                        path="/home"
-                        element={
-
-                                <Home />
-                        }
-                    />
-                    <Route
-                        path="/movie-details"
-                        element={
+                    <Route path="/home" element={ <Home />}/>
+                    <Route path="/movie-details" element={
                             <PrivateRoutes>
                                 <MovieDetails />
                             </PrivateRoutes>
@@ -44,9 +37,7 @@ const AppRoutes = () => {
                             </PrivateRoutes>
                         }
                     />
-                    <Route
-                        path="/user-rentals"
-                        element={
+                    <Route path="/user-rentals" element={
                             <PrivateRoutes>
                                 <UserRentals />
                             </PrivateRoutes>
