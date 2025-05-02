@@ -98,6 +98,7 @@ const MovieList = () => {
             role: "Admin",
             status: true,
             lastActive: new Date("2025-05-02T10:30:00Z")
+
         }
     ];
     
@@ -112,9 +113,41 @@ const MovieList = () => {
     const totalMovies = movies.length;
     const totalUsers = users.length;
     const totalRentedMovies = movies.filter(movie => movie.rented).length;
+
     const handleManageUser = (userId: number) => {
         console.log(`Managing user with ID: ${userId}`);     
     };
+    
+    const [userPage, setUserPage] = useState(1);
+    const usersPerPage = 4;
+
+    const [transactionPage, setTransactionPage] = useState(1);
+    const transactionsPerPage = 10;
+
+    //Combines data from users and movies
+    const transactions = users.flatMap(user =>
+        (user.rentedMovies || []).map(title => {
+            const movie = movies.find(m => m.title === title);
+            return {
+                user: user.username,
+                title,
+                price: movie?.price ?? null,
+                id: `${user.id}-${title}`,
+            };
+        })
+    );
+    // For pagination
+    const totalUserPages = Math.ceil(users.length / usersPerPage);
+    const paginatedUsers = users.slice(
+        (userPage - 1) * usersPerPage,
+        userPage * usersPerPage
+    );
+    // For pagination
+    const totalTransactionPages = Math.ceil(transactions.length / transactionsPerPage);
+    const paginatedTransactions = transactions.slice(
+        (transactionPage - 1) * transactionsPerPage,
+        transactionPage * transactionsPerPage
+    );
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
@@ -122,7 +155,6 @@ const MovieList = () => {
                 <header className="text-center">
                     <h1 className="text-4xl font-bold text-gray-800">Admin Dashboard</h1>
                 </header>
-
                 {/* Overview */}
                 <section>
                     <h2 className="text-2xl font-semibold mb-4">Overview</h2>
@@ -141,57 +173,60 @@ const MovieList = () => {
                         </div>
                     </div>
                 </section>
-
                 {/* Movie List */}
                 <section>
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="text-2xl font-semibold">Movies</h2>
                     </div>
-                    <div className="overflow-x-auto bg-white shadow rounded">
-                        <table className="min-w-full text-sm text-left">
+                    <div className="overflow-x-auto bg-white shadow rounded max-h-96 overflow-y-auto">
+                        <table className="min-w-full table-fixed text-sm text-left">
                             <thead className="bg-gray-50">
                                 <tr>
-                                    <th className="p-4">Title</th>
-                                    <th className="p-4">Genre</th>
-                                    <th className="p-4">Price</th>
-                                    <th className="p-4">Available</th>
+                                    <th className="p-4 text-left">Title</th>
+                                    <th className="p-4 text-center">Genre</th>
+                                    <th className="p-4 text-center">Price</th>
+                                    <th className="p-4 text-center">Available</th>
                                     <th className="p-4 text-right ">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {movies.map((movie) => (
                                     <tr key={movie.id} className="border-t hover:bg-gray-50">
-                                        <td className="p-4">{movie.title}</td>
-                                        <td className="p-4">{movie.genre}</td>
-                                        <td className="p-4">${movie.price}</td>
-                                        <td className="p-4">
+                                        <td className="p-4 text-left">{movie.title}</td>
+                                        <td className="p-4 text-center">{movie.genre}</td>
+                                        <td className="p-4 text-center">${movie.price}</td>
+                                        <td className="p-4 text-center">
                                             {movie.available ? (
                                                 <span className="text-green-500">Yes</span>
                                             ) : (
                                                 <span className="text-red-500">No</span>
                                             )}
                                         </td>
-                                        <td className="flex justify-end items-center p-4">
-                                                <button className="text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md">Edit</button>
-                                                <button className="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md ml-2">Delete</button>
+                                        <td className="p-4 text-right">
+                                            <button className="text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md">
+                                                Edit
+                                            </button>
+                                            <button className="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md ml-2">
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
+                    {/* New Movie Btn */}
                     <div className="flex justify-end mt-4 pr-4">
                         <button className="text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md">
                             Add New Movie
                         </button>
                     </div>
                 </section>
-
                 {/* User Management */}
                 <section>
                     <h2 className="text-2xl font-semibold mb-4">Users</h2>
-                    <div className="space-y-4">
-                        {users.map(user => (
+                    <div className="bg-white p-4 rounded shadow space-y-6">
+                        {paginatedUsers.map(user => (
                             <div key={user.id} className="bg-white p-4 rounded shadow flex justify-between items-center">
                                 <div>
                                     <p><strong>Username:</strong> {user.username}</p>
@@ -223,18 +258,94 @@ const MovieList = () => {
                                 </div>
                                 <div>
                                     <button className="text-white bg-indigo-400 hover:bg-indigo-500 focus:ring-4 focus:ring-indigo-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md"
-                                            onClick={() => handleManageUser(user.id)}
-                                    >Manage</button>
+                                        onClick={() => handleManageUser(user.id)}>
+                                        Manage
+                                    </button>
                                 </div>
                             </div>
                         ))}
+                    </div>
+                    {/*For pagination*/}
+                    <div className="flex justify-center items-center gap-4 mt-4">
+                        <button
+                            onClick={() => setUserPage(p => Math.max(p - 1, 1))}
+                            disabled={userPage === 1}
+                            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">
+                            Previous
+                        </button>
+                        <span>Page {userPage} of {totalUserPages}</span>
+                        <button
+                            onClick={() => setUserPage(p => Math.min(p + 1, totalUserPages))}
+                            disabled={userPage === totalUserPages}
+                            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">
+                            Next
+                        </button>
+                    </div>   
+                </section>
+                 {/* Transactions */}
+                <section>
+                    <div className="flex justify-between items-center mb-4">
+                        <h2 className="text-2xl font-semibold">Transactions</h2>
+                    </div>
+                    <div className="overflow-x-auto bg-white shadow rounded">
+                        <table className="min-w-full table-fixed text-sm text-left">
+                            <thead className="bg-gray-50">
+                                <tr>
+                                    <th className="p-4 text-left">User</th>
+                                    <th className="p-4 text-center">Movie Title</th>
+                                    <th className="p-4 text-center">Price</th>
+                                    <th className="p-4 text-center">Date</th>
+                                    <th className="p-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {paginatedTransactions.map(transaction => (
+                                    <tr key={transaction.id} className="border-t hover:bg-gray-50">
+                                        <td className="p-4 text-left">{transaction.user}</td>
+                                        <td className="p-4 text-center">{transaction.title}</td>
+                                        <td className="p-4 text-center">
+                                            {transaction.price !== null ? `$${transaction.price.toFixed(2)}` : 'N/A'}
+                                        </td>
+                                        <td className="p-4 text-center">{"Date from transaction table"} </td>
+                                        <td className="p-4 text-right">
+                                            <button className="text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md">
+                                                View
+                                            </button>
+                                            <button className="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:ring-red-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md ml-2">
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="flex justify-end mt-4 pr-4">
+                        <button className="text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md">
+                            Add New Transaction
+                        </button>
+                    </div>
+                    {/*For pagination*/}
+                    <div className="flex justify-center items-center gap-4 p-4">
+                        <button
+                            onClick={() => setTransactionPage(p => Math.max(p - 1, 1))}
+                            disabled={transactionPage === 1}
+                            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">
+                            Previous
+                        </button>
+                        <span>Page {transactionPage} of {totalTransactionPages}</span>
+                        <button
+                            onClick={() => setTransactionPage(p => Math.min(p + 1, totalTransactionPages))}
+                            disabled={transactionPage === totalTransactionPages}
+                            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">
+                            Next
+                        </button>
                     </div>
                 </section>
             </div>
         </div>
     );
 };
-
 export default MovieList;
 
 
