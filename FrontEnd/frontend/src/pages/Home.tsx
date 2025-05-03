@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import banner from "../components/mountain.jpg";
+import banner from '../components/moutain.jpg';
 import moviesData from '../movies.json';
 
 // Optional: Define a TypeScript interface for movie objects
