@@ -79,7 +79,7 @@ const Home = () => {
                             <div className="w-full h-64 bg-center bg-cover bg-no-repeat rounded-md" style={{ backgroundImage: `url(${movie.image})` }} />
                             <h3 className="text-white text-lg font-semibold mt-2 text-left leading-tight">{movie.title}</h3>
                             <div className="flex justify-between mt-4">
-                                <Link to={`/details/${movie.title}`} className="bg-blue-500 text-white px-4 py-1 rounded-md text-sm transform transition-transform hover:scale-105">Details</Link>
+                                <Link to={`/movie-details/${movie.title}`} className="bg-blue-500 text-white px-4 py-1 rounded-md text-sm transform transition-transform hover:scale-105">Details</Link>
                                 <Link to={`/rental/${movie.title}`} className="bg-green-500 text-white px-4 py-1 rounded-md text-sm transform transition-transform hover:scale-105">Rent</Link>
                             </div>
                         </div>
