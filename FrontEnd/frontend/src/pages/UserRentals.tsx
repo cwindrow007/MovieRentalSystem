@@ -80,7 +80,7 @@ const CheckoutPage = () => {
                         )}
                         <div className="flex gap-4 mt-6">
 
-                            <SecondaryButton type="button" disabled={loading} className="w-full bg-red-500 text-white"
+                            <PrimaryButton type="button" disabled={loading} className="w-full bg-red-500 text-white"
                                 onClick={() => {
                                     setCardNumber('');
                                     setExpirationDate('');
@@ -89,7 +89,7 @@ const CheckoutPage = () => {
                                 }}
                             >
                                 {loading ? '' : 'Cancel'}
-                            </SecondaryButton>
+                            </PrimaryButton>
 
                             <PrimaryButton type="submit" disabled={loading} className="w-full bg-green-400 text-white">
                                 {loading ? 'Processing...' : 'Accept'}
