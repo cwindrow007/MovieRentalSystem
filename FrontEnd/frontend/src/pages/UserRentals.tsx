@@ -47,12 +47,12 @@ const CheckoutPage = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100 px-4">
-            <form onSubmit={handleCheckout} className="bg-white p-7 rounded-lg shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-medium mb-6 text-center mt-4">Movie Rental Checkout</h2>
-                <div className="grid grid-cols-2 gap-4">
+        <div className="flex justify-center items-center h-screen bg-gray-100 px-3">
+            <form onSubmit={handleCheckout} className="bg-white p-8 rounded-lg shadow-md max-w-2xl">
+            <h2 className="text-2xl font-medium mb-6 text-center mt-4">Checkout Page</h2>
+                <div className="grid grid-cols-2 gap-8">
                     {/* Left side: Payment Information */}
-                    <div>
+                    <div className="border-2 border-gray-700 rounded-md p-4">
                         <h3 className="text-xl font-semibold mb-4">Payment Information</h3>
                         <input
                             type="text"
@@ -79,26 +79,36 @@ const CheckoutPage = () => {
                             <div className="text-red-500 text-sm mb-4 italic">{error}</div>
                         )}
                         <div className="flex gap-4 mt-6">
-                            <SecondaryButton type="button" disabled={loading} className="w-full bg-red-500 text-white" onClick={() => navigate('/cancel')}>
+
+                            <SecondaryButton type="button" disabled={loading} className="w-full bg-red-500 text-white"
+                                onClick={() => {
+                                    setCardNumber('');
+                                    setExpirationDate('');
+                                    setCvv('');
+                                    setError('');
+                                }}
+                            >
                                 {loading ? '' : 'Cancel'}
                             </SecondaryButton>
-                            <PrimaryButton type="submit" disabled={loading} className="w-full bg-green-500 text-white">
+
+                            <PrimaryButton type="submit" disabled={loading} className="w-full bg-green-400 text-white">
                                 {loading ? 'Processing...' : 'Accept'}
                             </PrimaryButton>
                         </div>
                     </div>
 
                     {/* Right side: Rented Movies */}
-                    <div>
+                    <div className="border-2 border-gray-700 rounded-md p-4 h-2/3">
                         <h3 className="text-xl font-semibold mb-4">Movies Rented</h3>
-                        <div className="border p-4 rounded-md bg-gray-50">
+                        <div className="bg-gray-50 p-4 rounded-md">
                             <p>Movie Title 1 - $5.00</p>
                             <p>Movie Title 2 - $7.50</p>
-                            <hr className="my-2" />
+                            <hr className="my-2 border-gray-800 border-1" />
                             <p className="font-semibold">Total: $12.50</p>
                         </div>
                     </div>
                 </div>
+
             </form>
         </div>
     );
