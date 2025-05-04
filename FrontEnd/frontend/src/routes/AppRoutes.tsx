@@ -23,10 +23,8 @@ const AppRoutes = () => {
 
                     {/*Private Routes*/}
                     <Route path="/home" element={ <Home />}/>
-                    <Route path="/movie-details" element={
-                            <PrivateRoutes>
-                                <MovieDetails />
-                            </PrivateRoutes>
+                    <Route path="/movie-details/:title" element={
+                        <MovieDetails />
                         }
                     />
                     <Route
