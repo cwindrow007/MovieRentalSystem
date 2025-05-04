@@ -15,16 +15,9 @@ const MovieDetails = () => {
         return <div className="text-white p-4">Movie data is incomplete or not found.</div>;
     }
 
-
-
-
     if (!movie) {
         return <div className="text-white p-4">Movie not found.</div>;
     }
-
-
-
-
 
     return (
         <div className="bg-gray-100 p-8 min-h-screen">
@@ -98,6 +91,8 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
+
+
 
 
 
