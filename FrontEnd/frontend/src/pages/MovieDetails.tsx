@@ -24,17 +24,6 @@ const MovieDetails = () => {
 
     return (
         <div className="bg-gray-700 p-4 min-h-screen">
-            <nav className="bg-gray-800 p-4 flex justify-between items-center">
-                <h1 className="text-white text-2xl">Movie Rental System</h1>
-                <div className="flex space-x-4">
-                    <Link to="/home" className="text-white">Home</Link>
-                    <Link to="/user-rentals" className="text-white">My Rentals</Link>
-                    <input type="text" placeholder="Search..." className="p-2 rounded" />
-                    <div className="text-white">Profile</div>
-                    <div className="text-white">Cart</div>
-                    <div className="text-white">Settings</div>
-                </div>
-            </nav>
             <div className="flex flex-col md:flex-row mt-8">
                 <div className="md:w-2/3 p-4">
                     <h1 className="text-4xl text-white font-bold">{movie.title}</h1>
