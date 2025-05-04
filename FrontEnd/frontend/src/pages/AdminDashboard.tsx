@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import movieData from '../movies.json';
 
  // In substitution of database
-type Movie = {
-    id: number;
-    title: string;
-    genre: string;
-    rented: boolean;
-    available: boolean;
-    price: number;
-};
 type User = {
     id: number;
     username: string;
@@ -51,34 +44,6 @@ const MovieList = () => {
     {/*Start of UI implementation using placeholder data*/}
 
     // In substitution of database
-    const fakeMovies = [
-        {
-            id: 1,
-            title: "Inception",
-            genre: "Thriller",
-            rented: true,
-            available: true,
-            price: 9.99
-        },
-        {
-            id: 2,
-            title: "The Matrix",
-            genre: "Sci-Fi",
-            rented: true,
-            available: true,
-            price: 9.99
-        },
-        {
-            id: 3,
-            title: "The Dark Knight",
-            genre: "Action",
-            rented: false,
-            available: true,
-            price: 9.99
-        },
-    ];
-
-    // In substitution of database
     const fakeUsers: User[] = [
         {
             id: 1,
@@ -101,28 +66,21 @@ const MovieList = () => {
 
         }
     ];
-    
-    const [movies, setMovies] = useState<Movie[]>([]); 
+
     const [users, setUsers] = useState<User[]>([]);
-
-    useEffect(() => {  
-       setMovies(fakeMovies);
-       setUsers(fakeUsers);
+    const [movies, setMovies] = useState<Movie[]>([]);
+    
+    useEffect(() => {
+        setMovies(movieData);
+        setUsers(fakeUsers); 
     }, []);
-
-    const totalMovies = movies.length;
-    const totalUsers = users.length;
-    const totalRentedMovies = movies.filter(movie => movie.rented).length;
 
     const handleManageUser = (userId: number) => {
         console.log(`Managing user with ID: ${userId}`);     
     };
-    
-    const [userPage, setUserPage] = useState(1);
-    const usersPerPage = 4;
 
-    const [transactionPage, setTransactionPage] = useState(1);
-    const transactionsPerPage = 10;
+    // For focused scrolling in movie list
+    const [isScrollable, setIsScrollable] = useState(false);
 
     //Combines data from users and movies
     const transactions = users.flatMap(user =>
@@ -136,6 +94,17 @@ const MovieList = () => {
             };
         })
     );
+
+    const totalMovies = movies.length;
+    const totalUsers = users.length;
+    const totalRentedMovies = movies.filter(movie => movie.rented).length;
+
+    // Max entries per page
+    const [userPage, setUserPage] = useState(1);
+    const usersPerPage = 4;
+    const [transactionPage, setTransactionPage] = useState(1);
+    const transactionsPerPage = 10;
+
     // For pagination
     const totalUserPages = Math.ceil(users.length / usersPerPage);
     const paginatedUsers = users.slice(
@@ -178,31 +147,34 @@ const MovieList = () => {
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="text-2xl font-semibold">Movies</h2>
                     </div>
-                    <div className="overflow-x-auto bg-white shadow rounded max-h-96 overflow-y-auto">
-                        <table className="min-w-full table-fixed text-sm text-left">
-                            <thead className="bg-gray-50">
+                    <div id="Movie-box" className={`overflow-x-auto bg-white shadow rounded max-h-96 ${isScrollable ? 'overflow-auto' : 'overflow-hidden'}`}
+                        onFocus={() => setIsScrollable(true)}  
+                        onBlur={() => setIsScrollable(false)}    
+                        tabIndex={0}>
+                        <table className="min-w-full text-sm text-left">
+                            <thead className="bg-gray-50 sticky top-0 z-10">
                                 <tr>
-                                    <th className="p-4 text-left">Title</th>
-                                    <th className="p-4 text-center">Genre</th>
-                                    <th className="p-4 text-center">Price</th>
-                                    <th className="p-4 text-center">Available</th>
-                                    <th className="p-4 text-right ">Actions</th>
+                                    <th className="p-4 text-left w-[200px]">Title</th>
+                                    <th className="p-4 text-center w-[120px]">Genre</th>
+                                    <th className="p-4 text-center w-[120px]">Price</th>
+                                    <th className="p-4 text-center w-[120px]">Available</th>
+                                    <th className="p-4 text-right w-[200px]">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {movies.map((movie) => (
                                     <tr key={movie.id} className="border-t hover:bg-gray-50">
-                                        <td className="p-4 text-left">{movie.title}</td>
-                                        <td className="p-4 text-center">{movie.genre}</td>
-                                        <td className="p-4 text-center">${movie.price}</td>
-                                        <td className="p-4 text-center">
+                                        <td className="p-4 text-left  w-[200px]">{movie.title}</td>
+                                        <td className="p-4 text-center w-[120px]">{movie.genre}</td>
+                                        <td className="p-4 text-center w-[120px]">${movie.price}</td>
+                                        <td className="p-4 text-center w-[120px]">
                                             {movie.available ? (
                                                 <span className="text-green-500">Yes</span>
                                             ) : (
                                                 <span className="text-red-500">No</span>
                                             )}
                                         </td>
-                                        <td className="p-4 text-right">
+                                        <td className="p-4 text-right w-[200px]">
                                             <button className="text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md">
                                                 Edit
                                             </button>
@@ -214,7 +186,7 @@ const MovieList = () => {
                                 ))}
                             </tbody>
                         </table>
-                    </div>
+                    </div> 
                     {/* New Movie Btn */}
                     <div className="flex justify-end mt-4 pr-4">
                         <button className="text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-md text-sm px-4 py-2 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-md">
@@ -344,8 +316,9 @@ const MovieList = () => {
                 </section>
             </div>
         </div>
-    );
+    );  
 };
+
 export default MovieList;
 
 
