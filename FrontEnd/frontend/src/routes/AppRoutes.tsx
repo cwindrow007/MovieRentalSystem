@@ -24,9 +24,7 @@ const AppRoutes = () => {
                     {/*Private Routes*/}
                     <Route path="/home" element={ <Home />}/>
                     <Route path="/movie-details/:title" element={
-                            <PrivateRoutes>
-                                <MovieDetails />
-                            </PrivateRoutes>
+                        <MovieDetails />
                         }
                     />
                     <Route

@@ -4,9 +4,18 @@ import banner from '../components/moutain.jpg';
 import {Link } from 'react-router-dom';
 
 const MovieDetails = () => {
+
     const { title } = useParams<{ title: string }>();
-    const decodedTitle = decodeURIComponent(title || '');
-    const movie = moviesData.find((m) => m.title === decodedTitle);
+    const decodedTitle = decodeURIComponent(title || '').trim();
+    const movie = moviesData.find((m) =>
+        m.title.trim().toLowerCase() === decodedTitle.toLowerCase()
+
+    );
+    if (!movie || !movie.title || !movie.description) {
+        return <div className="text-white p-4">Movie data is incomplete or not found.</div>;
+    }
+
+
 
 
     if (!movie) {
