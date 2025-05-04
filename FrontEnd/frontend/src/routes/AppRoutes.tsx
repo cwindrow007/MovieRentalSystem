@@ -29,12 +29,8 @@ const AppRoutes = () => {
                     />
                     <Route
                         path="/user-dashboard"
-                        element={
-                            <PrivateRoutes>
-                                <UserDashboardPage />
-                            </PrivateRoutes>
-                        }
-                    />
+                        element={<UserDashboardPage/>}/>
+
                     <Route path="/user-rentals" element={
                             <PrivateRoutes>
                                 <UserRentals />

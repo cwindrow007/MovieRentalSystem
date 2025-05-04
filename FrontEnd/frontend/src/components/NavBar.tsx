@@ -40,7 +40,7 @@ export default function Navbar() {
                         <Link to="/Home" className="hover:underline font-bold">Home</Link>
                     </li>
                     <li>
-                        <Link to="/my-rentals" className="hover:underline font-bold">My Rentals</Link>
+                        <Link to="/user-dashboard" className="hover:underline font-bold">My Rentals</Link>
                     </li>
                 </ul>
             </div>
