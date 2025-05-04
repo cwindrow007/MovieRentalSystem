@@ -1,10 +1,13 @@
 import { useParams } from 'react-router-dom';
 import moviesData from '../movies.json';
 import banner from '../components/moutain.jpg';
+import {Link } from 'react-router-dom';
 
 const MovieDetails = () => {
     const { title } = useParams<{ title: string }>();
-    const movie = moviesData.find((m) => m.title === title);
+    const decodedTitle = decodeURIComponent(title || '');
+    const movie = moviesData.find((m) => m.title === decodedTitle);
+
 
     if (!movie) {
         return <div className="text-white p-4">Movie not found.</div>;
@@ -15,8 +18,8 @@ const MovieDetails = () => {
             <nav className="bg-gray-800 p-4 flex justify-between items-center">
                 <h1 className="text-white text-2xl">Movie Rental System</h1>
                 <div className="flex space-x-4">
-                    <a href="/home" className="text-white">Home</a>
-                    <a href="/user-rentals" className="text-white">My Rentals</a>
+                    <Link to="/home" className="text-white">Home</Link>
+                    <Link to="/user-rentals" className="text-white">My Rentals</Link>
                     <input type="text" placeholder="Search..." className="p-2 rounded" />
                     <div className="text-white">Profile</div>
                     <div className="text-white">Cart</div>
