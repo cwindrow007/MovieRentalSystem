@@ -114,7 +114,7 @@
     "title": "Parasite",
     "description": "A poor family schemes to become employed by a wealthy household.",
     "genre": "Thriller",
-    "image": "image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+    "image": "https://www.themoviedb.org/t/p/original/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
     "rented": true,
     "available": false,
     "price": 7.99
