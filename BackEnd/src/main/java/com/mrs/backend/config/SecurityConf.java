@@ -40,7 +40,7 @@ public class SecurityConf {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173")); //  Your Vite dev server
+        config.setAllowedOrigins(List.of("http://localhost:5174")); //  Your Vite dev server
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true); //  must be true if using cookies/auth headers
