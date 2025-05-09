@@ -1,5 +1,29 @@
-# MovieRentalSystem
-CSC445 Movie Rental System
+#  Movie Rental System – CSC445 Final Project
+
+This is a full-stack web application that allows users to browse, rent, and return movies. The project includes secure user authentication, admin controls, rental history tracking, and frontend/backend separation.
+
+---
+
+##  Team Members
+
+- **Christopher Windrow**
+- **Ethan Byers**
+- **Molly Doherty**
+- **Andrew Ruffo**
+
+---
+
+##  Tech Stack
+
+| Layer       | Technology          |
+|-------------|---------------------|
+| Frontend    | React, TypeScript, Tailwind CSS, Vite |
+| Backend     | Java, Spring Boot, JWT, Spring Security |
+| Database    | PostgreSQL via Supabase |
+| Auth        | JSON Web Tokens (JWT) |
+| Deployment  | Vercel (frontend), Railway (backend) |
+
+---
 
 ---
 # Front End File Structure
